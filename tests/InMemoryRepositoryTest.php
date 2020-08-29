@@ -17,6 +17,18 @@ class InMemoryRepositoryTest extends TestCase
         static::assertCount(1, $all);
     }
 
+    public function testItReturnsTheFirstAndLastItemFromACollection(): void
+    {
+        $first = new User(1, 'tijmen');
+        $second = new User(2, 'barack');
+        $third = new User(1, 'donald');
+
+        $repository = new InMemoryRepository([$first, $second, $third]);
+
+        static::assertEquals($first, $repository->first());
+        static::assertEquals($third, $repository->last());
+    }
+
     public function testItStoresAValue(): void
     {
         $repository = new InMemoryRepository();

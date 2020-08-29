@@ -64,6 +64,19 @@ class InMemoryRepository implements Countable
     }
 
     /**
+     * @return mixed
+     * @psalm-return T|null
+     */
+    public function last()
+    {
+        if (empty($this->items)) {
+            return null;
+        }
+
+        return $this->items[array_key_last($this->items)];
+    }
+
+    /**
      * @psalm-param Closure(T=):bool $function
      * @psalm-return T|null
      */
