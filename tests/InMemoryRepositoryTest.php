@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace TijmenWierenga\Repositories;
+namespace TijmenWierenga\Tests\Repositories;
 
 use PHPUnit\Framework\TestCase;
+use TijmenWierenga\Repositories\InMemoryRepository;
 
 class InMemoryRepositoryTest extends TestCase
 {

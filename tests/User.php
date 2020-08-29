@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace TijmenWierenga\Repositories;
+namespace TijmenWierenga\Tests\Repositories;
 
 final class User
 {
