@@ -23,7 +23,7 @@ jobs:
         run: vendor/bin/psalm
 
       - name: Run PHPUnit
-        run: bin/phpunit
+        run: vendor/bin/phpunit
 
       - name: Run Infection
         run: vendor/bin/infection
