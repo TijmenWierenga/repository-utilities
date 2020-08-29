@@ -1,0 +1,29 @@
+name: PHP Tests
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Validate composer.json and composer.lock
+        run: composer validate --no-check-publish
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest
+
+      - name: Run PHP Codesniffer
+        run: vendor/bin/phpcs
+
+      - name: Run Psalm
+        run: vendor/bin/psalm
+
+      - name: Run PHPUnit
+        run: bin/phpunit
+
+      - name: Run Infection
+        run: vendor/bin/infection
