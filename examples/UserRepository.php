@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 interface UserRepository
 {
-    public function find(int $userId): User;
+    public function find(int $userId): ?User;
 
     public function persist(User $user): void;
 
