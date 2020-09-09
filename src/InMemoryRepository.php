@@ -47,7 +47,15 @@ class InMemoryRepository implements Countable
      */
     public function remove(Closure $function): void
     {
-        $this->items = array_filter($this->items, fn ($item): bool => ! $function);
+        $itemsToRemove = array_filter($this->items, $function);
+
+        foreach ($itemsToRemove as $item) {
+            $key = array_search($item, $this->items, true);
+
+            if ($key !== false) {
+                unset($this->items[$key]);
+            }
+        }
     }
 
     /**
