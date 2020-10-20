@@ -103,3 +103,18 @@ $repository = new InMemoryRepository($users);
 
 $repository->last(); // Returns User(3)
 ```
+
+#### `map(Closure $function): U`
+Returns a new repository instance based on the returned values of the closure.
+
+```php
+$users = [
+    new User(1),
+    new User(2),
+    new User(3),
+];
+
+$repository = new InMemoryRepository($users);
+
+$usernames = $repository->map(fn (User $user): string => $user->username()); // Returns InMemoryRepository<string> with usernames
+```
