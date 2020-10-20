@@ -52,9 +52,7 @@ class InMemoryRepository implements Countable
         foreach ($itemsToRemove as $item) {
             $key = array_search($item, $this->items, true);
 
-            if ($key !== false) {
-                unset($this->items[$key]);
-            }
+            unset($this->items[$key]);
         }
     }
 
@@ -111,5 +109,14 @@ class InMemoryRepository implements Countable
     public function count(): int
     {
         return count($this->items);
+    }
+
+    /**
+     * @psalm-template U
+     * @psalm-param Closure(T=):U $function
+     */
+    public function map(Closure $function): self
+    {
+        return new self(array_map($function, $this->items));
     }
 }

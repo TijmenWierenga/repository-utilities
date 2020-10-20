@@ -38,4 +38,9 @@ final class UserRepositoryInMemory implements UserRepository
     {
         return $this->storage->all();
     }
+
+    public function getUsernames(): array
+    {
+        return $this->storage->map(fn (User $user): string => $user->username())->all();
+    }
 }
