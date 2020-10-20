@@ -52,9 +52,7 @@ class InMemoryRepository implements Countable
         foreach ($itemsToRemove as $item) {
             $key = array_search($item, $this->items, true);
 
-            if ($key !== false) {
-                unset($this->items[$key]);
-            }
+            unset($this->items[$key]);
         }
     }
 

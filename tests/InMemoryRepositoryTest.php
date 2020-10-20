@@ -43,11 +43,15 @@ class InMemoryRepositoryTest extends TestCase
 
     public function testItRemovesAValueFromTheStoreBasedOnCondition(): void
     {
-        $repository = new InMemoryRepository([new User(1, 'tijmen')]);
+        $repository = new InMemoryRepository([
+            new User(1, 'tijmen'),
+            new User(2, 'barack'),
+        ]);
 
         $repository->remove(fn (User $user): bool => $user->id() === 1);
 
-        static::assertCount(0, $repository);
+        static::assertCount(1, $repository);
+        static::assertNull($repository->find(fn (User $user): bool => $user->id() === 1));
     }
 
     public function testItFindsTheFirstMatchingValueBasedOnCondition(): void
