@@ -112,4 +112,13 @@ class InMemoryRepository implements Countable
     {
         return count($this->items);
     }
+
+    /**
+     * @psalm-template U
+     * @psalm-param Closure(T=):U $function
+     */
+    public function map(Closure $function): self
+    {
+        return new self(array_map($function, $this->items));
+    }
 }

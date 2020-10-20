@@ -79,4 +79,22 @@ class InMemoryRepositoryTest extends TestCase
         static::assertContains($first, $result);
         static::assertContains($second, $result);
     }
+
+    public function testItMapsIntoANewRepository(): void
+    {
+        $first = new User(1, 'tijmen');
+        $second = new User(2, 'barack');
+        $third = new User(3, 'donald');
+        $repository = new InMemoryRepository([$first, $second, $third]);
+
+        $usernames = $repository->map(fn (User $user): string => $user->username());
+
+        static::assertCount(3, $usernames);
+
+        $all = $usernames->all();
+        static::assertContainsOnly('string', $all);
+        static::assertContains('tijmen', $all);
+        static::assertContains('barack', $all);
+        static::assertContains('donald', $all);
+    }
 }
