@@ -26,4 +26,4 @@ jobs:
         run: vendor/bin/phpunit
 
       - name: Run Infection
-        run: vendor/bin/infection
+        run: phpdbg -qrr vendor/bin/infection
